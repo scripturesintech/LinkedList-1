@@ -13,14 +13,29 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let myList = LinkedList<String>()
-        myList.insert(data: "40")
-		myList.insert(data: "30")
-		myList.insert(data: "20")
-		myList.insert(data: "10")
-		myList.insertAtNthNode(data: "35", n: 4)
-		myList.deleateNthNode(n: 4)
-        myList.printLinkedList()
+       let myList = LinkedList<Int>()
+myList.insert(data: 40)
+myList.insert(data: 30)
+myList.insert(data: 20)
+myList.insert(data: 10)
+myList.printList()
+print("\n")
+
+myList.insert(at: 2, data: 15)
+myList.insert(at: 1, data: 5)
+myList.insert(at: 5, data: 25)
+
+myList.delete(at: 1)
+
+print("Print normal list")
+myList.printList()
+
+myList.reverse()
+
+print("\n")
+print("Print reversed list")
+myList.printList()
+
     }
 
     override func didReceiveMemoryWarning() {
