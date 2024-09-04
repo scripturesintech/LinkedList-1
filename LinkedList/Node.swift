@@ -8,9 +8,12 @@
 
 import UIKit
 
-class Node <T: Equatable > {
+class Node<T> {
+    var data: T?
+    var next: Node?
     
-    var data :T? = nil
-    var next : Node? = nil
-    
+    init(data: T? = nil, next: Node? = nil) {
+        self.data = data
+        self.next = next
+    }
 }
