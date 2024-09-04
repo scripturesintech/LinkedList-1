@@ -5,86 +5,66 @@
 //  Created by Roopesh,Tripathi on 01/05/17.
 //
 //
+class LinkedList<T: Equatable> {
+    private var head: Node<T>?
 
-import UIKit
+    func insert(data: T) {
+        head = Node(data: data, next: head)
+    }
 
-class LinkedList <T: Equatable> {
-	
-	var head = Node<T>()
-	
-	
-	// Insert Node at begning of List
-	func insert (data: T) {
-		
-		let newNode = Node<T>()
-		newNode.data = data
-		newNode.next = head;
-		head = newNode;
-	}
-	
-	// Insert Node at nth postion of List
-	func insertAtNthNode (data : T, n : Int){
-		
-		let newNode = Node<T>()
-		newNode.data = data
-		newNode.next = nil
-		
-		if( n == 1){
-			
-			newNode.next = head
-			head = newNode
-			return
-		}
-		
-		var temp : Node! = head
-		for _ in 0 ..< n-2 {
-			
-			temp = temp.next
-		}
-		
-		newNode.next = temp.next
-		temp.next = newNode
-		
-	}
-	
-	// Delete Node from nth postion of List
-	func deleateNthNode(n : Int){
-		
-		var temp : Node! = head
-		
-		if (n == 1){
-			
-			head = temp.next!
-			temp = nil
-			return
-		}
-		
-		for _ in 0 ..< n-2 {
-			
-			temp = temp.next
-		}
-		
-		var temp1 : Node! = temp.next
-		temp.next = temp1.next
-		temp1 = nil
-		
-	}
-	
-	
-	// Print elements in Linkedlist
-	
-	func printLinkedList (){
-		
-		var temp : Node! = head
-		
-		while temp != nil && temp!.data != nil {
-			
-			print(" \(temp!.data!)")
-			temp = temp!.next
-		}
-	}
-	
-	
+    func insert(at index: Int, data: T) {
+        if index == 1 {
+            insert(data: data)
+            return
+        }
+        
+        var temp = head
+        for _ in 0..<index-2 {
+            temp = temp?.next
+        }
+        temp?.next = Node(data: data, next: temp?.next)
+    }
+
+    func delete(at index: Int) {
+        guard var temp = head else { return }
+        
+        if index == 1 {
+            head = temp.next
+            return
+        }
+        
+        for _ in 0..<index-2 {
+            temp = temp.next!
+        }
+        
+        let temp1 = temp.next
+        temp.next = temp1?.next   
+    }
+    
+    func reverse() {
+      var prev: Node<T>? = nil
+      var current = head
+      var next: Node<T>? = nil
+    
+      while current != nil {
+        next = current?.next    // Store the next node
+        current?.next = prev    // Reverse the current node's pointer
+        prev = current         // Move the prev pointer forward
+        current = next         // Move the current pointer forward
+    }
+    
+    head = prev             // Update the head to the new front of the list
 }
+
+    func printList() {
+        var current = head
+        while let data = current?.data {
+            print(data)
+            current = current?.next
+        }
+    }
+}
+
+
 
 
